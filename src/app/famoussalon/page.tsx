@@ -1,169 +1,241 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MapPin, Phone, ArrowRight, ShieldCheck, Clock, Star, Scissors } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight, MapPin, Phone } from "lucide-react";
 
-export default function FamousSalonMall() {
+export default function FamousSalonAvantGarde() {
+  const containerRef = useRef<any>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
+  
+  const yParallax = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  
+  const customEase: [number, number, number, number] = [0.25, 1, 0.5, 1];
+
+  const textReveal = {
+    hidden: { y: "100%", opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { duration: 1, ease: customEase } }
+  };
+
+  const stagger = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
   const services = [
-    { title: "Advanced Colorimetry", price: "₹4,000+", desc: "Bespoke color mapping, balayage, and vivid transformations using industry-leading formulations." },
-    { title: "Structural Hair Design", price: "₹1,200+", desc: "Precision cutting tailored to your facial architecture and lifestyle demands." },
-    { title: "Keratin & Botox Therapy", price: "₹5,000+", desc: "Intensive smoothing and structural repair for luminous, frizz-free longevity." },
-    { title: "Luxury Skin Rituals", price: "₹2,500+", desc: "Clinical-grade facials and dermal therapies to rejuvenate and restore your natural glow." }
+    { name: "Architectural Cutting", desc: "Precision scissor-work designed around your natural bone structure.", price: "₹1,200+" },
+    { name: "Dimensional Color", desc: "Seamless balayage, color-melting, and vivid technical applications.", price: "₹4,000+" },
+    { name: "Structural Repair", desc: "Advanced molecular hair restoration and smoothing therapies.", price: "₹3,500+" },
+    { name: "Curated Aesthetics", desc: "Clinical dermal treatments and high-definition event styling.", price: "₹2,500+" }
+  ];
+
+  const team = [
+    { name: "Aria Sharma", role: "Creative Director", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=600&auto=format&fit=crop" },
+    { name: "Vikram Seth", role: "Master Colorist", img: "https://images.unsplash.com/photo-1618077360395-f3068be8e001?q=80&w=600&auto=format&fit=crop" },
+    { name: "Elena Roy", role: "Aesthetician", img: "https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?q=80&w=600&auto=format&fit=crop" }
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#111] font-sans selection:bg-[#D4AF37] selection:text-white">
+    <main ref={containerRef} className="min-h-screen bg-[#EBEBEB] text-[#121212] font-sans selection:bg-[#121212] selection:text-[#EBEBEB] overflow-x-hidden">
       
-      {/* --- TOP BAR (Utility) --- */}
-      <div className="w-full bg-[#111] text-white/80 py-2 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center text-xs tracking-widest uppercase font-medium z-50 relative">
-        <div className="flex items-center gap-4 mb-2 md:mb-0">
-          <span className="flex items-center gap-2"><MapPin className="w-3 h-3 text-[#D4AF37]" /> Vasant Square Mall, Vasant Kunj</span>
+      {/* --- MINIMAL NAVIGATION --- */}
+      <nav className="fixed top-0 w-full px-6 md:px-12 py-6 flex justify-between items-center z-50 mix-blend-difference text-[#EBEBEB]">
+        <div className="text-xl md:text-2xl font-bold tracking-tighter uppercase">Famous.</div>
+        <div className="hidden md:flex gap-10 text-xs font-bold tracking-widest uppercase">
+          <span className="hover:opacity-50 transition-opacity cursor-pointer">Vision</span>
+          <span className="hover:opacity-50 transition-opacity cursor-pointer">Services</span>
+          <span className="hover:opacity-50 transition-opacity cursor-pointer">Studio</span>
         </div>
-        <div className="flex items-center gap-6">
-          <span className="flex items-center gap-2"><Clock className="w-3 h-3 text-[#D4AF37]" /> Open Daily: 10 AM - 9 PM</span>
-          <span className="flex items-center gap-2 hidden md:flex"><Phone className="w-3 h-3 text-[#D4AF37]" /> 09457572222</span>
-        </div>
-      </div>
-
-      {/* --- MAIN NAVIGATION --- */}
-      <nav className="w-full bg-white/90 backdrop-blur-md sticky top-0 z-40 border-b border-gray-100 px-6 md:px-12 py-5 flex justify-between items-center">
-        <div className="flex flex-col">
-          <span className="text-2xl md:text-3xl font-serif font-bold tracking-tight uppercase">Famous Salon</span>
-        </div>
-        
-        <div className="hidden lg:flex items-center gap-8 text-sm font-bold tracking-widest uppercase text-gray-500">
-          <span className="hover:text-[#111] transition-colors cursor-pointer">The Studio</span>
-          <span className="hover:text-[#111] transition-colors cursor-pointer">Services</span>
-          <span className="hover:text-[#111] transition-colors cursor-pointer">Bridal</span>
-        </div>
-
-        <a href="#book" className="bg-[#111] text-white px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-[#D4AF37] transition-colors duration-300">
-          Book Now
+        <a href="#book" className="text-xs font-bold tracking-widest uppercase border-b border-[#EBEBEB] pb-1 hover:opacity-50 transition-opacity">
+          Reserve
         </a>
       </nav>
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative w-full h-[75vh] bg-[#111] flex items-center px-6 md:px-12 overflow-hidden">
-        <motion.img 
-          initial={{ scale: 1.05, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.6 }}
-          transition={{ duration: 1.5 }}
-          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-          alt="Luxury Salon Interior"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        
-        <div className="relative z-10 max-w-2xl text-white">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex items-center gap-2 mb-6"
-          >
-            <div className="w-8 h-px bg-[#D4AF37]" />
-            <span className="text-xs font-bold tracking-widest uppercase text-[#D4AF37]">Premium Hair & Beauty</span>
-          </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6"
-          >
-            Redefining <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB]">Luxury Grooming.</span>
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/70 text-base md:text-lg max-w-md leading-relaxed mb-10"
-          >
-            Vasant Kunj's premier destination for high-fashion styling, advanced aesthetics, and uncompromising quality.
-          </motion.p>
-          
-          <motion.a 
-            href="#book"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="inline-flex items-center gap-3 bg-white text-[#111] px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-colors duration-300"
-          >
-            Explore Services <ArrowRight className="w-4 h-4" />
-          </motion.a>
-        </div>
+      {/* --- HERO: KINETIC TYPOGRAPHY --- */}
+      <section className="relative w-full h-screen flex flex-col justify-end px-6 md:px-12 pb-12 md:pb-20">
+        <motion.div 
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, ease: customEase }}
+          className="absolute top-0 right-0 w-full md:w-3/4 h-[70vh] md:h-screen -z-10 bg-[#121212]"
+        >
+          <motion.img 
+            style={{ y: yParallax }}
+            src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=2000&auto=format&fit=crop" 
+            alt="Avant Garde Styling"
+            className="w-full h-[120%] object-cover opacity-80 grayscale"
+          />
+        </motion.div>
+
+        <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-4xl z-10 mix-blend-difference text-[#EBEBEB]">
+          <div className="overflow-hidden mb-2"><motion.h1 variants={textReveal} className="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] uppercase">Famous</motion.h1></div>
+          <div className="overflow-hidden mb-8"><motion.h1 variants={textReveal} className="text-7xl md:text-[10rem] font-bold tracking-tighter leading-[0.85] uppercase">Studio.</motion.h1></div>
+          <div className="overflow-hidden">
+            <motion.p variants={textReveal} className="text-sm md:text-lg max-w-md font-medium tracking-wide opacity-80">
+              A progressive space for hair architecture and modern aesthetics, located in the heart of Vasant Square Mall.
+            </motion.p>
+          </div>
+        </motion.div>
       </section>
 
-      {/* --- TRUST BANNER (Bypassing the 4.0 Rating) --- */}
-      <div className="w-full bg-[#FAFAFA] border-b border-gray-100 py-8 px-6 md:px-12 flex flex-col md:flex-row justify-center gap-8 md:gap-16">
-        <div className="flex items-center gap-4">
-          <ShieldCheck className="w-8 h-8 text-[#D4AF37]" />
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest">Certified Experts</h4>
-            <p className="text-xs text-gray-500">Master stylists & technicians</p>
-          </div>
-        </div>
-        <div className="hidden md:block w-px h-10 bg-gray-200" />
-        <div className="flex items-center gap-4">
-          <Star className="w-8 h-8 text-[#D4AF37]" />
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest">Premium Products</h4>
-            <p className="text-xs text-gray-500">Global luxury brand partners</p>
-          </div>
-        </div>
-        <div className="hidden md:block w-px h-10 bg-gray-200" />
-        <div className="flex items-center gap-4">
-          <Scissors className="w-8 h-8 text-[#D4AF37]" />
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest">Bespoke Styling</h4>
-            <p className="text-xs text-gray-500">Tailored to your aesthetic</p>
-          </div>
-        </div>
+      {/* --- CONTINUOUS MARQUEE --- */}
+      <div className="w-full bg-[#121212] text-[#EBEBEB] py-6 overflow-hidden flex whitespace-nowrap">
+        <motion.div 
+          animate={{ x: [0, -1000] }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
+          className="flex gap-16 text-3xl md:text-5xl font-bold uppercase tracking-tighter"
+        >
+          <span>Redefining Form</span> <span className="opacity-30">/</span>
+          <span>Elevating Standards</span> <span className="opacity-30">/</span>
+          <span>Vasant Kunj</span> <span className="opacity-30">/</span>
+          <span>Redefining Form</span> <span className="opacity-30">/</span>
+          <span>Elevating Standards</span> <span className="opacity-30">/</span>
+          <span>Vasant Kunj</span> <span className="opacity-30">/</span>
+        </motion.div>
       </div>
 
-      {/* --- SERVICES GRID --- */}
-      <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">Our Expertise</h2>
-          <p className="text-gray-500 max-w-lg mx-auto">Experience a curated menu of advanced treatments executed with absolute precision.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((s, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group p-8 border border-gray-100 hover:border-[#D4AF37] bg-[#FAFAFA] transition-colors duration-300"
+      {/* --- PHILOSOPHY (NEW CONTENT) --- */}
+      <section className="py-32 px-6 md:px-12 bg-[#EBEBEB]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-16 md:gap-32">
+          <div className="w-full md:w-1/3">
+            <motion.span 
+              initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+              className="text-xs font-bold uppercase tracking-widest text-[#121212]/50 block mb-6"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-serif font-bold group-hover:text-[#D4AF37] transition-colors">{s.title}</h3>
-                <span className="text-sm font-bold tracking-widest text-gray-400">{s.price}</span>
-              </div>
-              <p className="text-sm text-gray-500 leading-relaxed">{s.desc}</p>
-            </motion.div>
-          ))}
+              The Vision
+            </motion.span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter leading-tight">More than a salon. <br/>An institution.</h2>
+          </div>
+          <div className="w-full md:w-2/3 text-lg md:text-2xl font-medium text-[#121212]/80 leading-snug">
+            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="mb-8">
+              We reject the standard formulas of the beauty industry. At Famous, every cut is an architectural project. Every color application is a study in dimension and light. 
+            </motion.p>
+            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
+              Operating out of Vasant Kunj's premier retail space, we provide an environment of absolute focus, delivering uncompromising results for clients who demand the best.
+            </motion.p>
+          </div>
         </div>
       </section>
 
-      {/* --- CTA / FOOTER --- */}
-      <section id="book" className="w-full bg-[#111] text-white py-24 px-6 md:px-12 flex flex-col items-center text-center">
-        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Experience Famous Salon.</h2>
-        <p className="text-white/60 max-w-md mb-10">Step into our Vasant Square Mall studio and elevate your personal aesthetic. Walk-ins are accommodated based on availability.</p>
-        
-        <button className="bg-[#D4AF37] text-white px-12 py-5 text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-[#111] transition-colors duration-300 mb-16">
-          Confirm Your Appointment
-        </button>
-
-        <div className="w-full max-w-4xl border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs tracking-widest uppercase text-white/40">
-          <span>© {new Date().getFullYear()} Famous Salon Vasant Kunj</span>
-          <span className="hover:text-white transition-colors cursor-pointer">Engineered by Tapecut Studios</span>
+      {/* --- EXPANDING SERVICES INTERACTION --- */}
+      <section className="py-24 px-6 md:px-12 bg-[#121212] text-[#EBEBEB]">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-20">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase">The Disciplines.</h2>
+          </div>
+          
+          <div className="flex flex-col border-t border-[#EBEBEB]/20">
+            {services.map((service, index) => (
+              <motion.div 
+                key={index}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.8, delay: index * 0.1 } }
+                }}
+                className="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 md:py-12 border-b border-[#EBEBEB]/20 hover:border-[#EBEBEB] transition-colors duration-500 cursor-pointer"
+              >
+                <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-16 w-full md:w-2/3">
+                  <span className="text-xs font-bold tracking-widest opacity-30 group-hover:opacity-100 transition-opacity">0{index + 1}</span>
+                  <h3 className="text-3xl md:text-5xl font-bold tracking-tighter group-hover:translate-x-4 transition-transform duration-500">{service.name}</h3>
+                </div>
+                <div className="mt-4 md:mt-0 w-full md:w-1/3 flex flex-col items-start md:items-end gap-2">
+                  <p className="text-sm opacity-60 text-left md:text-right">{service.desc}</p>
+                  <span className="font-bold tracking-widest">{service.price}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-    </div>
+      {/* --- THE ARTISTS (NEW TEAM SECTION) --- */}
+      <section className="py-32 px-6 md:px-12 bg-[#EBEBEB]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-between items-end mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase">The Directors.</h2>
+            <span className="hidden md:block text-xs font-bold uppercase tracking-widest opacity-50">Masters of their craft</span>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {team.map((member, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.2 }}
+                className="flex flex-col group"
+              >
+                <div className="w-full aspect-[3/4] overflow-hidden mb-6 bg-[#121212]">
+                  <img src={member.img} alt={member.name} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" />
+                </div>
+                <h4 className="text-2xl font-bold tracking-tight uppercase">{member.name}</h4>
+                <p className="text-sm font-bold tracking-widest opacity-50 uppercase">{member.role}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- IMMERSIVE FOOTER / BOOKING --- */}
+      <footer id="book" className="w-full bg-[#121212] text-[#EBEBEB] pt-32 pb-12 px-6 md:px-12 relative overflow-hidden">
+        <motion.div 
+          initial={{ scale: 1.5, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 0.15 }}
+          transition={{ duration: 2, ease: customEase }}
+          className="absolute inset-0 z-0"
+        >
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=2000&auto=format&fit=crop" className="w-full h-full object-cover grayscale" alt="texture" />
+        </motion.div>
+
+        <div className="max-w-6xl mx-auto relative z-10 flex flex-col items-center text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-6xl md:text-[8rem] font-bold tracking-tighter leading-none uppercase mb-8"
+          >
+            Initiate.
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg max-w-md opacity-70 mb-12"
+          >
+            Secure your time at our Vasant Square Mall studio. Uncompromising service awaits.
+          </motion.p>
+
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#EBEBEB] text-[#121212] px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-white transition-colors mb-32"
+          >
+            Book Appointment
+          </motion.button>
+
+          <div className="w-full flex flex-col md:flex-row justify-between items-center border-t border-[#EBEBEB]/20 pt-10 gap-8">
+            <div className="flex gap-8 text-xs font-bold uppercase tracking-widest opacity-60">
+              <span className="flex items-center gap-2"><MapPin className="w-4 h-4"/> Vasant Square Mall, Vasant Kunj</span>
+              <span className="hidden md:flex items-center gap-2"><Phone className="w-4 h-4"/> 09457572222</span>
+            </div>
+            
+            <div className="flex gap-6 text-xs font-bold uppercase tracking-widest opacity-60">
+  <span className="hover:opacity-100 cursor-pointer transition-opacity">Instagram</span>
+  <span className="hover:opacity-100 cursor-pointer transition-opacity">WhatsApp</span>
+</div>
+
+            <div className="text-xs font-bold uppercase tracking-widest opacity-40">
+              Engineered by Tapecut Studios
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
