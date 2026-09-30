@@ -2,18 +2,17 @@
 
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, MapPin, Phone, Star, Sparkles, Scissors, ShieldCheck, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, MapPin, Phone, Star, Sparkles, CheckCircle2 } from "lucide-react";
 
 export default function FamousSalonFullyLoaded() {
   const containerRef = useRef<any>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
   
-  const yParallax = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const opacityFade = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const yParallax = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   
   const fadeUp: Variants = {
-    hidden: { y: 50, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
+    hidden: { y: 40, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
   };
 
   const stagger: Variants = {
@@ -91,39 +90,40 @@ export default function FamousSalonFullyLoaded() {
         </motion.nav>
       </div>
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative w-full h-screen flex flex-col items-center justify-center text-center px-6">
+      {/* --- RICH HERO SECTION (Fixed Empty Background) --- */}
+      <section className="relative w-full h-screen flex flex-col items-center justify-center text-center px-6 bg-[#111] overflow-hidden">
         <motion.div 
-          style={{ y: yParallax, opacity: opacityFade }}
+          style={{ y: yParallax }}
           className="absolute inset-0 w-full h-full -z-10"
         >
           <img 
-            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=2000&auto=format&fit=crop" 
-            alt="Salon Interior"
-            className="w-full h-full object-cover opacity-35"
+            src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2000&auto=format&fit=crop" 
+            alt="Luxury Salon Interior"
+            className="w-full h-full object-cover opacity-60 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FAF9F6]/60 to-[#FAF9F6]" />
+          {/* Deep dark gradient overlay so text is crisp and the background is fully packed */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-black/40 to-black/70" />
         </motion.div>
 
-        <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-4xl z-10 pt-16">
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-[#D4BBA5]/30 shadow-sm mb-6">
+        <motion.div variants={stagger} initial="hidden" animate="show" className="max-w-4xl z-10 pt-16 text-white">
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm mb-6">
             <Sparkles className="w-3.5 h-3.5 text-[#D4BBA5]" />
-            <span className="text-[11px] font-bold tracking-widest uppercase text-[#8A7B6E]">Vasant Square Mall, Vasant Kunj</span>
+            <span className="text-[11px] font-bold tracking-widest uppercase text-[#D4BBA5]">Vasant Square Mall, Vasant Kunj</span>
           </motion.div>
           
-          <motion.h1 variants={fadeUp} className="text-6xl md:text-[8rem] font-serif tracking-tight leading-[0.9] mb-8 text-[#1A1A1A]">
-            Elevated <br/><span className="italic font-light text-[#8A7B6E]">aesthetics.</span>
+          <motion.h1 variants={fadeUp} className="text-6xl md:text-[8rem] font-serif tracking-tight leading-[0.9] mb-8 text-white">
+            Elevated <br/><span className="italic font-light text-[#D4BBA5]">aesthetics.</span>
           </motion.h1>
           
-          <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#2C2A28]/70 max-w-xl mx-auto leading-relaxed mb-10">
+          <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/80 max-w-xl mx-auto leading-relaxed mb-10">
             South Delhi’s sanctuary for precision hair architecture, luminous skin therapies, and uncompromising personal style.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#services" className="w-full sm:w-auto bg-[#2C2A28] text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#D4BBA5] transition-colors shadow-lg">
+            <a href="#services" className="w-full sm:w-auto bg-[#D4BBA5] text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-[#111] transition-colors shadow-lg">
               Explore Services
             </a>
-            <a href="#book" className="w-full sm:w-auto bg-white text-[#2C2A28] border border-gray-200 px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-gray-50 transition-colors">
+            <a href="#book" className="w-full sm:w-auto bg-transparent text-white border border-white/30 px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-colors">
               Book Appointment
             </a>
           </motion.div>
@@ -131,7 +131,7 @@ export default function FamousSalonFullyLoaded() {
       </section>
 
       {/* --- STATS / QUICK HIGHLIGHTS BAR --- */}
-      <section className="bg-white py-12 px-6 border-y border-gray-100 relative z-20 shadow-sm">
+      <section className="bg-white py-12 px-6 border-b border-gray-100 relative z-20 shadow-sm">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div className="flex flex-col items-center">
             <span className="text-3xl md:text-4xl font-serif font-bold text-[#1A1A1A] mb-1">157+</span>
