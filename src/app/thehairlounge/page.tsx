@@ -1,232 +1,164 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { MapPin, Phone, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { MapPin, Phone, ArrowRight, Calendar, Star, Clock } from "lucide-react";
 
-export default function TheHairLoungeEditorial() {
-  const containerRef = useRef<any>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-  
-  // Parallax for the editorial images
-  const yImageFast = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const yImageSlow = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
-
-  const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-  const fadeUp: any = {
-    hidden: { y: 40, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 1, ease: customEase } }
-  };
-
-  const staggerContainer: any = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
-  };
-
+export default function TheHairLoungeSolid() {
   const services = [
-    {
-      title: "Signature Styling",
-      desc: "Precision cutting focused on natural movement and bone structure.",
-      price: "₹1,000+",
-    },
-    {
-      title: "Color Alchemy",
-      desc: "Seamless balayage, vivids, and high-integrity color corrections.",
-      price: "₹4,500+",
-    },
-    {
-      title: "Restorative Care",
-      desc: "Deep-conditioning and keratin treatments for compromised hair.",
-      price: "₹2,500+",
-    },
-    {
-      title: "Event & Bridal",
-      desc: "Flawless execution for high-profile events and wedding mornings.",
-      price: "Consult",
-    }
+    { title: "The Signature Cut", price: "₹1,000+", desc: "Precision scissor work tailored to your bone structure and daily routine." },
+    { title: "Balayage Blend", price: "₹4,500+", desc: "Hand-painted, dimensional color for a seamless, lived-in aesthetic." },
+    { title: "Keratin Smooth", price: "₹3,000+", desc: "Advanced frizz-eliminating structural repair lasting up to 12 weeks." },
+    { title: "Deep Scalp Detox", price: "₹1,500+", desc: "A clarifying exfoliation treatment to stimulate healthy follicular growth." }
   ];
 
   return (
-    <main ref={containerRef} className="min-h-screen bg-[#FAFAFA] text-[#121212] font-sans selection:bg-[#121212] selection:text-[#FAFAFA] overflow-x-hidden">
-      
-      {/* --- MINIMALIST NAV --- */}
-      <motion.nav 
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: customEase }}
-        className="w-full px-6 md:px-12 py-8 flex justify-between items-center absolute top-0 z-50 mix-blend-difference text-white"
-      >
-        <span className="text-lg md:text-xl font-serif tracking-tighter font-medium">THL.</span>
-        
-        <div className="hidden md:flex items-center gap-8 text-xs font-medium tracking-widest uppercase">
-          <span className="hover:opacity-60 transition-opacity cursor-pointer">Studio</span>
-          <span className="hover:opacity-60 transition-opacity cursor-pointer">Menu</span>
-          <span className="hover:opacity-60 transition-opacity cursor-pointer">Contact</span>
+    <div className="min-h-screen bg-[#FAFAFA] text-[#111] font-sans selection:bg-[#c9a98a] selection:text-white flex flex-col md:grid md:grid-cols-12">
+
+      {/* --- LEFT: STICKY BRAND COLUMN (Reliable Grid Layout) --- */}
+      <div className="w-full md:col-span-5 lg:col-span-4 bg-[#0a0a0a] text-white p-8 md:p-12 lg:p-16 flex flex-col justify-between md:sticky md:top-0 md:h-screen z-20 shadow-2xl">
+        <div>
+          <motion.div 
+            initial={{ opacity: 0, width: 0 }} 
+            animate={{ opacity: 1, width: 48 }} 
+            transition={{ duration: 0.8 }}
+            className="h-1 bg-[#c9a98a] mb-10"
+          />
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-5xl lg:text-7xl font-serif tracking-tight leading-[1]"
+          >
+            The <br/>
+            <span className="italic text-[#c9a98a]">Hair</span> <br/>
+            Lounge.
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 0.4 }} 
+            className="mt-8 text-white/70 max-w-sm text-sm leading-relaxed"
+          >
+            South Extension's premier destination for architectural cuts, transformative color, and uncompromising aesthetics.
+          </motion.p>
         </div>
 
-        <a href="#book" className="text-xs font-medium tracking-widest uppercase flex items-center gap-2 hover:opacity-60 transition-opacity">
-          Book <ArrowUpRight className="w-4 h-4" />
-        </a>
-      </motion.nav>
-
-      {/* --- ASYMMETRICAL HERO --- */}
-      <section className="relative w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-12 pt-32 md:pt-0 gap-12">
-        
-        {/* Left: Typography */}
         <motion.div 
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
-          className="w-full md:w-1/2 flex flex-col justify-center z-10 md:pr-10"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ delay: 0.6 }} 
+          className="mt-16 md:mt-0 flex flex-col gap-8"
         >
-          <div className="overflow-hidden mb-4">
-            <motion.p variants={fadeUp} className="text-xs font-medium tracking-widest uppercase text-[#121212]/50">
-              South Extension I, New Delhi
-            </motion.p>
-          </div>
-          
-          <div className="overflow-hidden">
-            <motion.h1 variants={fadeUp} className="text-6xl md:text-[8rem] font-serif leading-[0.9] tracking-tighter text-[#121212]">
-              The Hair
-            </motion.h1>
-          </div>
-          <div className="overflow-hidden mb-8">
-            <motion.h1 variants={fadeUp} className="text-6xl md:text-[8rem] font-serif leading-[0.9] tracking-tighter italic text-[#121212]/80">
-              Lounge.
-            </motion.h1>
-          </div>
-          
-          <div className="overflow-hidden">
-            <motion.p variants={fadeUp} className="text-lg md:text-xl text-[#121212]/70 max-w-md leading-relaxed">
-              A highly curated space dedicated to the art of aesthetic refinement. Where South Delhi's most discerning clients find their signature look.
-            </motion.p>
-          </div>
+          <a href="#book" className="group flex items-center justify-between w-full bg-[#c9a98a] text-black px-6 py-5 hover:bg-white transition-colors duration-300 uppercase text-xs font-bold tracking-widest rounded-sm">
+            <span>Book Appointment</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+          </a>
 
-          <motion.div variants={fadeUp} className="mt-12">
-            <a href="#book" className="inline-flex items-center gap-3 bg-[#121212] text-[#FAFAFA] px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-[#333] transition-colors">
-              Reserve a Chair
-            </a>
-          </motion.div>
+          <div className="flex flex-col gap-4 text-xs text-white/60 uppercase tracking-widest font-medium border-t border-white/10 pt-8">
+            <span className="flex items-center gap-3"><MapPin className="w-4 h-4 text-[#c9a98a]"/> South Ext I, New Delhi</span>
+            <span className="flex items-center gap-3"><Phone className="w-4 h-4 text-[#c9a98a]"/> 09217845455</span>
+          </div>
         </motion.div>
+      </div>
 
-        {/* Right: Tall Editorial Image */}
-        <div className="w-full md:w-1/2 h-[60vh] md:h-[90vh] relative overflow-hidden rounded-2xl bg-[#EBEBEB]">
+      {/* --- RIGHT: SCROLLING CONTENT COLUMN --- */}
+      <div className="w-full md:col-span-7 lg:col-span-8 bg-[#FAFAFA]">
+
+        {/* Guaranteed Working Image URL */}
+        <div className="w-full h-[50vh] md:h-[65vh] relative overflow-hidden bg-[#111]">
           <motion.img 
             initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.8, ease: customEase }}
-            style={{ y: yImageFast }}
-            src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=1000&auto=format&fit=crop" 
-            alt="Editorial hair styling"
-            className="absolute inset-0 w-full h-[120%] object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
+            animate={{ scale: 1, opacity: 0.8 }}
+            transition={{ duration: 1.5 }}
+            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+            className="w-full h-full object-cover" 
+            alt="Premium Salon Interior" 
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FAFAFA] to-transparent opacity-90" />
         </div>
-      </section>
 
-      {/* --- EDITORIAL MENU (LIST BASED) --- */}
-      <section className="w-full py-32 px-6 md:px-12 bg-[#FAFAFA]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16">
+        <div className="px-6 md:px-12 lg:px-20 -mt-20 relative z-10 pb-20">
           
-          {/* Section Header */}
-          <div className="w-full md:w-1/3">
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: customEase }}
-              className="text-4xl md:text-5xl font-serif tracking-tighter sticky top-32"
-            >
-              The Menu.
-            </motion.h2>
-          </div>
-
-          {/* Minimalist Line-Item Services */}
-          <div className="w-full md:w-2/3 flex flex-col">
-            {services.map((service, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, ease: customEase, delay: index * 0.1 }}
-                className="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-b border-[#121212]/10 hover:border-[#121212] transition-colors"
-              >
-                <div className="flex flex-col gap-2 max-w-sm">
-                  <h3 className="text-2xl font-serif tracking-tight group-hover:italic transition-all">{service.title}</h3>
-                  <p className="text-sm text-[#121212]/60 leading-relaxed">{service.desc}</p>
-                </div>
-                <div className="mt-4 md:mt-0 flex items-center gap-6">
-                  <span className="font-serif text-xl">{service.price}</span>
-                  <div className="w-10 h-10 rounded-full border border-[#121212]/20 flex items-center justify-center group-hover:bg-[#121212] group-hover:text-[#FAFAFA] transition-all cursor-pointer">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* --- MASONRY GALLERY / VIBE --- */}
-      <section className="w-full py-20 px-6 md:px-12 bg-[#121212] text-[#FAFAFA]">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-auto md:h-[600px]">
-            <div className="w-full h-full flex flex-col justify-center pr-10 mb-10 md:mb-0">
-              <h2 className="text-4xl md:text-6xl font-serif tracking-tighter leading-none mb-6">Mastery in <br/><span className="italic text-white/50">motion.</span></h2>
-              <p className="text-white/60 max-w-sm">Every cut, color, and treatment is executed with uncompromising precision. Our South Ex studio is designed for complete relaxation.</p>
-            </div>
-            <div className="w-full h-[400px] md:h-full rounded-2xl overflow-hidden relative">
-              <motion.img 
-                style={{ y: yImageSlow }}
-                src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1000&auto=format&fit=crop" 
-                alt="Salon detail"
-                className="absolute inset-0 w-full h-[120%] object-cover opacity-80"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- HIGH CONTRAST FOOTER --- */}
-      <footer id="book" className="w-full bg-[#FAFAFA] text-[#121212] pt-32 pb-12 px-6 md:px-12">
-        <motion.div 
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={staggerContainer}
-          className="max-w-6xl mx-auto flex flex-col items-center text-center"
-        >
-          <div className="overflow-hidden mb-8">
-            <motion.h2 variants={fadeUp} className="text-5xl md:text-[7rem] font-serif tracking-tighter leading-none">
-              Book the <span className="italic text-[#121212]/50">Lounge.</span>
-            </motion.h2>
-          </div>
-          
-          <motion.div variants={fadeUp} className="w-full max-w-2xl flex flex-col md:flex-row justify-between items-center py-12 border-y border-[#121212]/10 my-12 gap-10">
-            <div className="flex items-center gap-4 text-left">
-              <MapPin className="w-6 h-6 text-[#121212]/50 shrink-0" /> 
-              <span className="text-sm font-medium">
-                Market, F 38, South Extension I,<br/>
-                Near McDonald's, New Delhi 110049
-              </span>
-            </div>
-            <div className="hidden md:block w-[1px] h-12 bg-[#121212]/10" />
+          {/* Trust Banner */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="bg-white p-6 rounded-xl shadow-xl shadow-black/5 flex flex-col md:flex-row items-center justify-between gap-6 mb-16 border border-gray-100"
+          >
             <div className="flex items-center gap-4">
-              <Phone className="w-6 h-6 text-[#121212]/50" /> 
-              <span className="text-lg font-serif">09217845455</span>
+              <div className="flex text-[#c9a98a]">
+                <Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current" /><Star className="w-5 h-5 fill-current" />
+              </div>
+              <span className="text-sm font-bold tracking-widest uppercase">Premium Rated</span>
+            </div>
+            <div className="hidden md:block w-px h-8 bg-gray-200" />
+            <div className="flex items-center gap-3 text-sm text-gray-500 font-medium">
+              <Clock className="w-5 h-5 text-[#c9a98a]" />
+              <span>Open Daily: 10 AM - 8 PM</span>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="w-full flex justify-between items-center text-xs font-medium tracking-widest uppercase text-[#121212]/40">
-            <span>© {new Date().getFullYear()} THL</span>
-            <span className="hover:text-[#121212] transition-colors cursor-pointer">
-              Engineered by Tapecut Studios
-            </span>
+          {/* Service Grid */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-serif mb-8 tracking-tight">Curated Services.</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {services.map((s, i) => (
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, y: 20 }} 
+                  whileInView={{ opacity: 1, y: 0 }} 
+                  viewport={{ once: true, margin: "-50px" }} 
+                  transition={{ delay: i * 0.1 }} 
+                  className="bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 group"
+                >
+                  <h3 className="text-xl font-serif mb-3 group-hover:text-[#c9a98a] transition-colors">{s.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-6">{s.desc}</p>
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <span className="font-bold tracking-tight">{s.price}</span>
+                    <a href="#book" className="text-[#c9a98a] bg-[#c9a98a]/10 p-2 rounded-full group-hover:bg-[#c9a98a] group-hover:text-white transition-colors">
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Secondary Guaranteed Image */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }}
+            className="w-full h-[40vh] rounded-2xl overflow-hidden shadow-lg mb-16"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" 
+              alt="Styling Detail" 
+            />
           </motion.div>
-        </motion.div>
-      </footer>
-    </main>
+
+          {/* Booking CTA */}
+          <motion.div 
+            id="book"
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            className="w-full bg-[#111] text-white p-10 md:p-16 rounded-2xl text-center flex flex-col items-center shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#c9a98a]" />
+            <h2 className="text-4xl font-serif mb-6 z-10">Step into the Lounge.</h2>
+            <p className="text-white/70 text-sm max-w-md mb-10 z-10 leading-relaxed">
+              Experience South Extension's highest standard of grooming and aesthetics. Secure your appointment today.
+            </p>
+            <button className="bg-[#c9a98a] text-black px-10 py-4 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300 z-10">
+              Confirm Availability
+            </button>
+          </motion.div>
+
+        </div>
+      </div>
+    </div>
   );
 }
