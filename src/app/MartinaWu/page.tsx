@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, MapPin, Phone, Star, Scissors, Clock, Sparkles, CheckCircle2, ShieldCheck, Heart } from "lucide-react";
+import { ArrowRight, MapPin, Phone, Star, CheckCircle2, Sparkles } from "lucide-react";
 
-export default function FamousSalonMasterpiece() {
+export default function MartinaWuMasterpiece() {
   const fadeUp: Variants = {
     hidden: { y: 40, opacity: 0 },
     show: { y: 0, opacity: 1, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
@@ -17,43 +17,43 @@ export default function FamousSalonMasterpiece() {
   const services = [
     { 
       title: "Signature Haircut & Styling", 
-      price: "₹1,200+", 
+      price: "₹1,800+", 
       time: "45 Min", 
       desc: "Precision cutting tailored to frame your unique facial structure and fit your lifestyle.",
       img: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=800&auto=format&fit=crop"
     },
     { 
       title: "Bespoke Balayage & Color", 
-      price: "₹4,000+", 
+      price: "₹5,500+", 
       time: "120 Min", 
       desc: "Hand-painted dimensional color blending for a seamless, sun-kissed finish.",
       img: "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=800&auto=format&fit=crop"
     },
     { 
       title: "Keratin & Molecular Repair", 
-      price: "₹4,500+", 
+      price: "₹6,000+", 
       time: "150 Min", 
       desc: "Deep structural smoothing therapy designed to rescue and revitalize frizzy, dry hair.",
       img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=800&auto=format&fit=crop"
     },
     { 
-      title: "Advanced Skin Rituals", 
-      price: "₹2,500+", 
+      title: "Advanced Scalp Rituals", 
+      price: "₹3,000+", 
       time: "60 Min", 
-      desc: "Rejuvenating clinical facials to restore natural radiance, hydration, and glow.",
+      desc: "Rejuvenating clinical treatments to restore natural hair vitality, hydration, and strength.",
       img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop"
     }
   ];
 
   const steps = [
-    { num: "01", title: "Consultation", desc: "We evaluate your hair texture, skin type, and individual aesthetic goals." },
+    { num: "01", title: "Consultation", desc: "We evaluate your hair texture and individual aesthetic goals." },
     { num: "02", title: "Custom Formulation", desc: "Colors and treatments are expertly mixed using premium global products." },
-    { num: "03", title: "The Transformation", desc: "Executed with absolute precision by our senior master stylists." },
+    { num: "03", title: "The Transformation", desc: "Executed with absolute precision by our master stylists." },
     { num: "04", title: "Finishing & Care", desc: "Styled to perfection with professional take-home maintenance guidance." }
   ];
 
   const reviews = [
-    { quote: "Absolute perfection. The attention to detail at Vasant Square Mall is unmatched in South Delhi.", author: "Natasha K." },
+    { quote: "Absolute perfection. The attention to detail at Martina Wu is unmatched in South Delhi.", author: "Natasha K." },
     { quote: "Transformed my hair completely. The color blending is world-class and long-lasting.", author: "Rohan M." },
     { quote: "Clean, peaceful, and deeply professional. My permanent go-to studio.", author: "Priya S." }
   ];
@@ -70,7 +70,7 @@ export default function FamousSalonMasterpiece() {
           className="bg-white/80 backdrop-blur-md border border-[#EFECE6] shadow-lg shadow-black/5 rounded-full px-8 py-3.5 flex items-center justify-between w-full max-w-5xl"
         >
           <span className="text-xl font-serif font-semibold tracking-wide text-[#1A1817]">
-            Famous <span className="text-[#C5A880] font-light italic">Salon</span>
+            Martina <span className="text-[#C5A880] font-light italic">Wu</span>
           </span>
           
           <div className="hidden md:flex gap-8 text-[11px] font-bold tracking-widest uppercase text-[#6B6560]">
@@ -95,24 +95,24 @@ export default function FamousSalonMasterpiece() {
           className="w-full lg:w-1/2 flex flex-col items-start text-left"
         >
           <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F4EFEA] text-[11px] font-bold uppercase tracking-widest rounded-full text-[#8C7A6B] mb-6 border border-[#EFECE6]">
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" /> Vasant Square Mall, Vasant Kunj
+            <Sparkles className="w-3.5 h-3.5 text-[#C5A880]" /> Geetanjali Marg, South Delhi
           </motion.div>
           
           <motion.h1 variants={fadeUp} className="text-5xl sm:text-6xl md:text-7xl font-serif tracking-tight leading-[1.06] mb-6 text-[#1A1817]">
-            Where beauty meets <br />
+            Redefining hair <br />
             <span className="italic font-light text-[#C5A880]">artistry.</span>
           </motion.h1>
           
           <motion.p variants={fadeUp} className="text-base md:text-lg text-[#6B6560] leading-relaxed mb-8 max-w-lg">
-            Vasant Kunj's premier destination for high-fashion hair styling, transformational color, and rejuvenating skin treatments.
+            South Delhi's premier destination for high-fashion hair styling, transformational color, and bespoke salon treatments.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
             <a href="#services" className="w-full sm:w-auto bg-[#C5A880] text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#2C2A29] transition-colors shadow-lg text-center">
               Explore Services
             </a>
-            <a href="tel:09457572222" className="w-full sm:w-auto bg-transparent text-[#2C2A29] border border-[#DCD6CE] px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#F4EFEA] transition-colors text-center">
-              Call: 09457572222
+            <a href="tel:09999318102" className="w-full sm:w-auto bg-transparent text-[#2C2A29] border border-[#DCD6CE] px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#F4EFEA] transition-colors text-center">
+              Call: 09999318102
             </a>
           </motion.div>
 
@@ -120,7 +120,7 @@ export default function FamousSalonMasterpiece() {
             <div className="flex text-[#C5A880]">
               <Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" /><Star className="w-4 h-4 fill-current" />
             </div>
-            <span className="text-xs font-semibold text-[#6B6560] uppercase tracking-wider">Trusted by 150+ regular clients in South Delhi</span>
+            <span className="text-xs font-semibold text-[#6B6560] uppercase tracking-wider">Trusted by South Delhi's Elite</span>
           </motion.div>
         </motion.div>
 
@@ -133,14 +133,14 @@ export default function FamousSalonMasterpiece() {
         >
           <img 
             src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1000&auto=format&fit=crop" 
-            alt="Famous Salon Interior" 
+            alt="Martina Wu Salon Interior" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg flex items-center justify-between">
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-900">Famous Salon Studio</h4>
-              <p className="text-[11px] text-gray-500">Ground Floor, Vasant Square Mall</p>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-900">Martina Wu Studio</h4>
+              <p className="text-[11px] text-gray-500">Block C, Geetanjali Marg</p>
             </div>
             <span className="text-xs font-bold px-3 py-1 bg-[#C5A880]/10 text-[#C5A880] rounded-full">Open Daily</span>
           </div>
@@ -151,16 +151,16 @@ export default function FamousSalonMasterpiece() {
       <section className="bg-white py-12 px-6 border-y border-[#EFECE6] shadow-sm">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <span className="text-3xl font-serif font-bold text-[#1A1817] block mb-1">157+</span>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#8C7A6B]">Verified Reviews</span>
+            <span className="text-3xl font-serif font-bold text-[#1A1817] block mb-1">500+</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#8C7A6B]">Satisfied Clients</span>
           </div>
           <div>
             <span className="text-3xl font-serif font-bold text-[#1A1A1A] block mb-1">100%</span>
             <span className="text-xs font-bold uppercase tracking-widest text-[#8C7A6B]">Global Formulations</span>
           </div>
           <div>
-            <span className="text-3xl font-serif font-bold text-[#1A1A1A] block mb-1">Ground</span>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#8C7A6B]">Vasant Square Mall</span>
+            <span className="text-3xl font-serif font-bold text-[#1A1A1A] block mb-1">Block C</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#8C7A6B]">Geetanjali Marg</span>
           </div>
           <div>
             <span className="text-3xl font-serif font-bold text-[#1A1A1A] block mb-1">10 AM</span>
@@ -188,7 +188,7 @@ export default function FamousSalonMasterpiece() {
               Elegance engineered for everyday life.
             </h2>
             <p className="text-[#6B6560] leading-relaxed mb-6">
-              Located in the thriving heart of Vasant Kunj, Famous Salon was founded on the belief that premium personal grooming should feel like a sanctuary. We combine rigorous technical expertise with a deeply relaxing atmosphere.
+              Located in the thriving heart of South Delhi, Martina Wu was founded on the belief that premium hair styling should feel like a sanctuary. We combine rigorous technical expertise with a deeply relaxing atmosphere.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="flex items-center gap-3">
@@ -251,7 +251,7 @@ export default function FamousSalonMasterpiece() {
       <section className="py-32 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="text-center max-w-xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-serif tracking-tight mb-4">The Studio Journey</h2>
-          <p className="text-[#6B6560] text-sm">What to expect from the moment you walk through our mall entrance.</p>
+          <p className="text-[#6B6560] text-sm">What to expect from the moment you walk through our doors.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -287,17 +287,17 @@ export default function FamousSalonMasterpiece() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest text-[#C5A880] block mb-3">Visit Our Studio</span>
-            <h2 className="text-4xl md:text-6xl font-serif tracking-tight mb-6">Famous Salon</h2>
+            <h2 className="text-4xl md:text-6xl font-serif tracking-tight mb-6">Martina Wu</h2>
             
             <div className="flex flex-col gap-3 text-sm text-[#FAF8F5]/75">
-              <span className="flex items-center gap-3"><MapPin className="w-4 h-4 text-[#C5A880]" /> Shop no. G-31, Ground Floor, Vasant Square Mall, Vasant Kunj, New Delhi 110070</span>
-              <span className="flex items-center gap-3"><Phone className="w-4 h-4 text-[#C5A880]" /> 09457572222</span>
+              <span className="flex items-center gap-3"><MapPin className="w-4 h-4 text-[#C5A880]" /> C93, Geetanjali Marg, next to Jammu & Kashmir Bank, Block C, New Delhi</span>
+              <span className="flex items-center gap-3"><Phone className="w-4 h-4 text-[#C5A880]" /> 09999318102</span>
             </div>
           </div>
 
           <div className="flex flex-col gap-4 w-full md:w-auto">
-            <a href="tel:09457572222" className="bg-[#C5A880] text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#1A1A1A] transition-colors text-center shadow-xl">
-              Call to Book: 09457572222
+            <a href="tel:09999318102" className="bg-[#C5A880] text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-[#1A1A1A] transition-colors text-center shadow-xl">
+              Call to Book: 09999318102
             </a>
             <span className="text-[10px] font-bold uppercase tracking-widest text-[#FAF8F5]/30 text-center">
               Digital Presence Engineered by Tapecut Studios
